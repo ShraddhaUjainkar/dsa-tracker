@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="mt-12 border-t border-slate-200 bg-white">
@@ -11,9 +13,12 @@ export default function Footer() {
         <div className="flex items-center gap-3 text-xs text-slate-500">
           <span className="text-slate-300">•</span>
 
-          <a href="/about" className="hover:text-indigo-600 transition-colors">
+          <Link
+            href="/about"
+            className="hover:text-indigo-600 transition-colors"
+          >
             About
-          </a>
+          </Link>
         </div>
       </div>
     </footer>
