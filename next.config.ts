@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  basePath: "/dsa-progress",
-  assetPrefix: "/dsa-progress/",
+  basePath: "/dsa-tracker",
+  assetPrefix: "/dsa-tracker/",
   images: {
     unoptimized: true,
   },
