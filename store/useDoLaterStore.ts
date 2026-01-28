@@ -8,7 +8,9 @@ export interface DoLaterItem {
   title: string;
   difficulty: Difficulty;
   topic: string;
-  link: string;
+  gfgLink: string;
+  leetCodeLink: string;
+  youtubeLink: string;
 }
 
 interface DoLaterState {

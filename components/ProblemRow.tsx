@@ -1,7 +1,9 @@
+"use client";
 import { Topic } from "@/data/problem";
 import ProgressBar from "@/components/ProgressBar";
 import slugify from "@/utils/slugify";
 import Link from "next/link";
+import { useCompletedStore } from "@/store/useCompletedStore";
 
 interface TopicCardProps {
   topic: Topic;
@@ -12,8 +14,12 @@ export default function TopicCard({ topic }: TopicCardProps) {
   const easy = topic.problems.filter((p) => p.difficulty === "Easy").length;
   const medium = topic.problems.filter((p) => p.difficulty === "Medium").length;
   const hard = topic.problems.filter((p) => p.difficulty === "Hard").length;
+  const completedIds = useCompletedStore((state) => state.completedIds);
 
-  const completed = 1; // placeholder
+  const completed = topic.problems.filter((p) =>
+    completedIds.includes(p.id),
+  ).length;
+
   const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
   const slug = slugify(topic.title);
 
@@ -28,18 +34,9 @@ export default function TopicCard({ topic }: TopicCardProps) {
       >
         {/* Title + arrow */}
         <div className="flex items-start justify-between gap-3">
-          <h3 className="text-lg font-semibold text-slate-900 leading-snug">
+          <h3 className="text-md font-semibold text-slate-800 leading-snug">
             {topic.title}
           </h3>
-
-          <span
-            className="
-              text-slate-300 transition-transform duration-300
-              group-hover:translate-x-1 group-hover:text-slate-500
-            "
-          >
-            →
-          </span>
         </div>
 
         {/* Meta */}
@@ -49,19 +46,19 @@ export default function TopicCard({ topic }: TopicCardProps) {
         <div className="mt-4 flex items-center gap-4 text-xs text-slate-600">
           <div className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-emerald-400" />
-            <span className="font-medium text-slate-700">Easy</span>
+            <span className="text-sm text-slate-600">Easy</span>
             <span className="text-slate-500">{easy}</span>
           </div>
 
           <div className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-amber-400" />
-            <span className="font-medium text-slate-700">Medium</span>
+            <span className="text-sm text-slate-600">Medium</span>
             <span className="text-slate-500">{medium}</span>
           </div>
 
           <div className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-rose-400" />
-            <span className="font-medium text-slate-700">Hard</span>
+            <span className="text-sm text-slate-600">Hard</span>
             <span className="text-slate-500">{hard}</span>
           </div>
         </div>
@@ -69,8 +66,10 @@ export default function TopicCard({ topic }: TopicCardProps) {
         {/* Progress */}
         <div className="mt-5">
           <div className="mb-1 flex items-center justify-between text-[11px]">
-            <span className="font-medium text-slate-500">Progress</span>
-            <span className="font-semibold text-indigo-700">{percentage}%</span>
+            <span className="text-sm text-slate-600">Progress</span>
+            <span className="text-sm font-semibold text-indigo-700">
+              {percentage}%
+            </span>
           </div>
 
           <ProgressBar value={percentage} />
