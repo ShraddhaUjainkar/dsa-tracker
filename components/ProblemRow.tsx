@@ -11,10 +11,16 @@ interface TopicCardProps {
 
 export default function TopicCard({ topic }: TopicCardProps) {
   const total = topic.problems.length;
-  const easy = topic.problems.filter((p) => p.difficulty === "Easy").length;
-  const medium = topic.problems.filter((p) => p.difficulty === "Medium").length;
-  const hard = topic.problems.filter((p) => p.difficulty === "Hard").length;
   const completedIds = useCompletedStore((state) => state.completedIds);
+
+  // Count problems and solved per difficulty
+  const easyProblems = topic.problems.filter((p) => p.difficulty === "Easy");
+  const mediumProblems = topic.problems.filter((p) => p.difficulty === "Medium");
+  const hardProblems = topic.problems.filter((p) => p.difficulty === "Hard");
+
+  const easySolved = easyProblems.filter((p) => completedIds.includes(p.id)).length;
+  const mediumSolved = mediumProblems.filter((p) => completedIds.includes(p.id)).length;
+  const hardSolved = hardProblems.filter((p) => completedIds.includes(p.id)).length;
 
   const completed = topic.problems.filter((p) =>
     completedIds.includes(p.id),
@@ -42,24 +48,30 @@ export default function TopicCard({ topic }: TopicCardProps) {
         {/* Meta */}
         <p className="mt-1 text-sm text-slate-500">{total} questions</p>
 
-        {/* Difficulty (unchanged, as requested) */}
+        {/* Difficulty with solved counts */}
         <div className="mt-4 flex items-center gap-4 text-xs text-slate-600">
           <div className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-emerald-400" />
             <span className="text-sm text-slate-600">Easy</span>
-            <span className="text-slate-500">{easy}</span>
+            <span className={`text-slate-500 ${easySolved === easyProblems.length && easyProblems.length > 0 ? 'text-emerald-600 font-semibold' : ''}`}>
+              {easySolved}/{easyProblems.length}
+            </span>
           </div>
 
           <div className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-amber-400" />
             <span className="text-sm text-slate-600">Medium</span>
-            <span className="text-slate-500">{medium}</span>
+            <span className={`text-slate-500 ${mediumSolved === mediumProblems.length && mediumProblems.length > 0 ? 'text-amber-600 font-semibold' : ''}`}>
+              {mediumSolved}/{mediumProblems.length}
+            </span>
           </div>
 
           <div className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-rose-400" />
             <span className="text-sm text-slate-600">Hard</span>
-            <span className="text-slate-500">{hard}</span>
+            <span className={`text-slate-500 ${hardSolved === hardProblems.length && hardProblems.length > 0 ? 'text-rose-600 font-semibold' : ''}`}>
+              {hardSolved}/{hardProblems.length}
+            </span>
           </div>
         </div>
 

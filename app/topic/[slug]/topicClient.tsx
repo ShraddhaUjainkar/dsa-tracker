@@ -4,7 +4,7 @@ import { Topic, Problem, Difficulty } from "@/data/problem";
 import { useDoLaterStore } from "@/store/useDoLaterStore";
 import { useCompletedStore } from "@/store/useCompletedStore";
 import PageHeader from "@/components/PageHeader";
-import { LeetCodeIcon, GFGIcon, YouTubeIcon } from "@/components/icons";
+import { LeetCodeIcon, GFGIcon, YouTubeIcon, TUFIcon } from "@/components/icons";
 
 // Modern difficulty section config with gradients
 const difficultyConfig: Record<Difficulty, { 
@@ -105,6 +105,13 @@ function ProblemCard({
           >
             {problem.title}
           </span>
+          
+          {/* Solved badge */}
+          {completed && (
+            <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-sm">
+              ✓ Solved
+            </span>
+          )}
         </div>
       </div>
 
@@ -159,6 +166,22 @@ function ProblemCard({
               <YouTubeIcon className="w-4 h-4" />
             </a>
           )}
+
+          {problem.tufLink && (
+            <a
+              href={problem.tufLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              title="Read on Take U Forward"
+              className="flex items-center justify-center w-8 h-8 rounded-lg 
+                         bg-gradient-to-br from-violet-50 to-purple-50
+                         text-violet-600 hover:from-violet-100 hover:to-purple-100
+                         transition-all duration-200 hover:scale-110 hover:shadow-md"
+            >
+              <TUFIcon className="w-4 h-4" />
+            </a>
+          )}
         </div>
 
         {/* Save button */}
@@ -176,6 +199,7 @@ function ProblemCard({
               gfgLink: problem.gfgLink,
               leetCodeLink: problem.leetCodeLink,
               youtubeLink: problem.youtubeLink,
+              tufLink: problem.tufLink,
             });
           }}
           className={`

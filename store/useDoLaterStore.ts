@@ -11,6 +11,7 @@ export interface DoLaterItem {
   gfgLink: string;
   leetCodeLink: string;
   youtubeLink: string;
+  tufLink: string;
 }
 
 interface DoLaterState {

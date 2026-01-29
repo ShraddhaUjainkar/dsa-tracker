@@ -3,7 +3,7 @@
 import PageHeader from "@/components/PageHeader";
 import RequireSetup from "@/components/RequireSetup";
 import { useDoLaterStore, DoLaterItem, Difficulty } from "@/store/useDoLaterStore";
-import { LeetCodeIcon, GFGIcon, YouTubeIcon } from "@/components/icons";
+import { LeetCodeIcon, GFGIcon, YouTubeIcon, TUFIcon } from "@/components/icons";
 
 // Difficulty section config matching topicClient
 const difficultyConfig: Record<Difficulty, { 
@@ -106,6 +106,21 @@ function SavedProblemCard({
                          transition-all duration-200 hover:scale-110 hover:shadow-md"
             >
               <YouTubeIcon className="w-4 h-4" />
+            </a>
+          )}
+
+          {item.tufLink && (
+            <a
+              href={item.tufLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Read on Take U Forward"
+              className="flex items-center justify-center w-8 h-8 rounded-lg 
+                         bg-gradient-to-br from-violet-50 to-purple-50
+                         text-violet-600 hover:from-violet-100 hover:to-purple-100
+                         transition-all duration-200 hover:scale-110 hover:shadow-md"
+            >
+              <TUFIcon className="w-4 h-4" />
             </a>
           )}
         </div>
