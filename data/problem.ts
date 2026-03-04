@@ -2158,10 +2158,10 @@ export const dsaData: Topic[] = [
         "id": "s10p3",
         "title": "Fruit Into Baskets",
         "difficulty": "Medium",
-        "gfgLink": "",
-        "leetCodeLink": "",
-        "youtubeLink": "",
-        "tufLink": ""
+        "gfgLink": "https://www.geeksforgeeks.org/problems/fruit-into-baskets-1663137462/1",
+        "leetCodeLink": "https://leetcode.com/problems/fruit-into-baskets/",
+        "youtubeLink": "https://www.youtube.com/watch?v=e3bs0uA1NhQ",
+        "tufLink": "https://takeuforward.org/data-structure/fruit-into-baskets"
       },
       {
         "id": "s10p4",
