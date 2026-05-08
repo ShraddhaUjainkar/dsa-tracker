@@ -2326,7 +2326,7 @@ export const dsaData: Topic[] = [
         "title": "Replace each array element by its corresponding rank",
         "difficulty": "Medium",
         "gfgLink": "",
-        "leetCodeLink": "",
+        "leetCodeLink": "https://leetcode.com/problems/replace-elements-in-an-array/",
         "youtubeLink": "",
         "tufLink": "https://takeuforward.org/data-structure/replace-elements-by-its-rank-in-the-array/"
       },
